@@ -16,3 +16,19 @@ def pregunta_11():
 
 
     """
+    counts = {}
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+            columns = line.strip().split('\t')
+            letter = columns[3]
+            value = int(columns[1])
+            keys = letter.split(',')
+            for key in keys:
+                if key in counts:
+                    counts[key] += value
+                else:
+                    counts[key] = value
+    
+    rpta = {k: v for k, v in sorted(counts.items())}
+    
+    return rpta

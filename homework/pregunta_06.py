@@ -26,3 +26,24 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    min_max_values = []
+    with open('files/input/data.csv', 'r') as file:
+        data = {}
+        for line in file:
+            columns = line.strip().split('\t')
+            values = columns[4].split(',')
+            for value in values:
+                key, val = value.split(':')
+                if key in data:
+                    data[key].append(int(val))
+                else:
+                    data[key] = [int(val)]
+    
+    for key, values in data.items():
+        min_value = min(values)
+        max_value = max(values)
+        min_max_values.append((key, min_value, max_value))
+    
+    min_max_values.sort(key=lambda x: x[0]) 
+    
+    return min_max_values

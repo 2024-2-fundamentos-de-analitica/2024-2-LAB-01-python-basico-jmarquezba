@@ -15,3 +15,18 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    rpta = {}
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+            columns = line.strip().split('\t')
+            letter = columns[0]
+            values = columns[4].split(',')
+            for value in values:
+                key = value.split(':')[0]
+                count = int(value.split(':')[1])
+                if letter in rpta:
+                    rpta[letter] += count
+                else:
+                    rpta[letter] = count
+    
+    return rpta

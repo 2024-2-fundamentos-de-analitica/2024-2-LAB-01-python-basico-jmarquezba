@@ -25,3 +25,19 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    rpta = []
+    with open('files/input/data.csv', 'r') as file:
+        data = {}
+        for line in file:
+            columns = line.strip().split('\t')
+            value = int(columns[1])
+            letter = columns[0]
+            if value in data:
+                data[value].append(letter)
+            else:
+                data[value] = [letter]
+    
+    for value, letters in sorted(data.items()):
+        rpta.append((value, letters))
+    
+    return rpta

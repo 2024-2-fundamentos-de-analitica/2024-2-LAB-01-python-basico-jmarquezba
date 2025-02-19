@@ -14,3 +14,10 @@ def pregunta_01():
     214
 
     """
+    rpta = 0
+    with open('files/input/data.csv', 'r') as file:
+        for line in file:
+            columns = line.strip().split('\t')
+            rpta += int(columns[1])
+
+    return rpta
